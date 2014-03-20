@@ -29,7 +29,8 @@ function love.load()
     objects.ball.fixture = love.physics.newFixture(objects.ball.body, objects.ball.shape, 1)
     objects.ball.fixture:setRestitution(1)
 
-    love.physics.newDistanceJoint(objects.paddle.body, objects.center.body, objects.paddle.body:getX(), objects.paddle.body:getY(), objects.center.body:getX(), objects.center.body:getY())
+    love.physics.newDistanceJoint(objects.paddle.body, objects.center.body, objects.paddle.body:getX() + img_width / 2, objects.paddle.body:getY(), objects.center.body:getX(), objects.center.body:getY())
+    love.physics.newDistanceJoint(objects.paddle.body, objects.center.body, objects.paddle.body:getX() - img_width / 2, objects.paddle.body:getY(), objects.center.body:getX(), objects.center.body:getY())
 end
 
 function love.draw()
@@ -48,8 +49,6 @@ function love.update(dt)
     angle = math.atan2(screen_center_y - objects.paddle.body:getY(), screen_center_x - objects.paddle.body:getX()) + math.pi / 2
     force_x = force * math.cos(angle)
     force_y = force * math.sin(angle)
-
-    objects.paddle.body:setAngle(angle)    
 
     if love.keyboard.isDown("left") then
         objects.paddle.body:applyForce(-force_x, -force_y)
