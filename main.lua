@@ -28,9 +28,11 @@ function love.load()
 
     objects.ball = Ball(world, screen_center_x, screen_center_y, img.ball)
 
-    love.physics.newDistanceJoint(objects.platform.body, objects.center.body, objects.platform.body:getX() + img_width / 2,
+    love.physics.newDistanceJoint(objects.platform.body, objects.center.body,
+        (objects.platform.body:getX() + objects.platform.PLATFORM_WIDTH / 2),
         objects.platform.body:getY(), objects.center.body:getX(), objects.center.body:getY())
-    love.physics.newDistanceJoint(objects.platform.body, objects.center.body, objects.platform.body:getX() - img_width / 2,
+    love.physics.newDistanceJoint(objects.platform.body, objects.center.body,
+        (objects.platform.body:getX() - objects.platform.PLATFORM_WIDTH / 2),
         objects.platform.body:getY(), objects.center.body:getX(), objects.center.body:getY())
 end
 
